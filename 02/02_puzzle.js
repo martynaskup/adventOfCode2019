@@ -42,16 +42,33 @@ console.log('puzzleDataPart1[0] is ', puzzleDataPart1[0]);
 // PART 2
 // output to be found caused by (noun + verb)
 const output = 19690720;
-let puzzleDataPart2 = puzzleData;
+
+let puzzleDataPart2 = [];
+function findOutput() {
+  let puzzleDataNewNoun = [];
+  let puzzleDataNewVerb = [];
+  for (let noun = 0; noun <= 99; noun++) {
+    puzzleDataNewNoun = puzzleData.slice();
+    puzzleDataNewNoun[1] = noun;
+    for (let verb = 0; verb <= 99; verb++) {
+      puzzleDataNewVerb = puzzleDataNewNoun.slice();
+      puzzleDataNewVerb[2] = verb;
+      puzzleZero(puzzleDataNewVerb);
+      if (puzzleDataNewVerb[0] === output) {
+        return (puzzleDataPart2 = puzzleDataNewVerb);
+      }
+    }
+  }
+}
+findOutput();
 
 let noun = puzzleDataPart2[1];
 let verb = puzzleDataPart2[2];
 let solutionPart2 = 100 * noun + verb;
-
-console.log(puzzleData);
+console.log('solutionPart2', solutionPart2);
 
 // add the solutions to the HTML
 const sol1 = document.getElementById('sol1');
 const sol2 = document.getElementById('sol2');
 sol1.innerHTML += ` <b>${puzzleDataPart1[0]}</b>`; // 3716293
-sol2.innerHTML += ` <b>${solutionPart2}</b>`; // result
+sol2.innerHTML += ` <b>${solutionPart2}</b>`; // 6431
