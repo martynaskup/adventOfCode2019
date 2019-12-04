@@ -2,21 +2,24 @@ console.log('Origin puzzleData', puzzleData);
 
 // PART 1
 // replace the pos 1 and 2 with values 12 before running the program
-puzzleData[1] = 12;
-puzzleData[2] = 2;
+const puzzleDataPart1 = puzzleData;
+puzzleDataPart1[1] = 12;
+puzzleDataPart1[2] = 2;
 
-// change the puzzleData accordingly to opcode
-const puzzleEnd = puzzleData.length;
+// change the puzzleDataPart1 accordingly to opcode
+const puzzleEnd = puzzleDataPart1.length;
 for (i = 0; i < puzzleEnd; i = i + 4) {
-  let opcode = puzzleData[i];
-  let first = puzzleData[i + 1];
-  let second = puzzleData[i + 2];
-  let position = puzzleData[i + 3];
+  let opcode = puzzleDataPart1[i];
+  let first = puzzleDataPart1[i + 1];
+  let second = puzzleDataPart1[i + 2];
+  let position = puzzleDataPart1[i + 3];
 
   if (opcode === 1) {
-    puzzleData[position] = puzzleData[first] + puzzleData[second];
+    puzzleDataPart1[position] =
+      puzzleDataPart1[first] + puzzleDataPart1[second];
   } else if (opcode === 2) {
-    puzzleData[position] = puzzleData[first] * puzzleData[second];
+    puzzleDataPart1[position] =
+      puzzleDataPart1[first] * puzzleDataPart1[second];
   } else if (opcode === 99) {
     i = puzzleEnd - 4;
   } else {
@@ -24,13 +27,15 @@ for (i = 0; i < puzzleEnd; i = i + 4) {
   }
 }
 
-console.log('Endversion of puzzledata', puzzleData);
-console.log('puzzleData[0] is ', puzzleData[0]);
+console.log('Endversion of puzzledataPart1', puzzleDataPart1);
+console.log('puzzleDataPart1[0] is ', puzzleDataPart1[0]);
 
 // PART 2
+let noun = puzzleDataPart1[1];
+let verb = puzzleDataPart1[2];
 
 // add the solutions to the HTML
 const sol1 = document.getElementById('sol1');
 const sol2 = document.getElementById('sol2');
-sol1.innerHTML += ` <b>${puzzleData[0]}</b>`; // 3716293
+sol1.innerHTML += ` <b>${puzzleDataPart1[0]}</b>`; // 3716293
 sol2.innerHTML += ` <b></b>`; // result
